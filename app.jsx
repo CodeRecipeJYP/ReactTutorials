@@ -64,12 +64,12 @@ function Counter(props) {
   return (
     <div className="counter">
       {/*<button className="counter-action decrement" onClick={this.decrementScore}>*/}
-      <button className="counter-action decrement">
+      <button className="counter-action decrement" onClick={function() {props.onChange(-1);}}>
         -
       </button>
       <div className="counter-score"> {props.score} </div>
       {/*<button className="counter-action increment" onClick={this.incrementScore.bind(this)}>*/}
-      <button className="counter-action increment">
+      <button className="counter-action increment" onClick={function() {props.onChange(1);}}>
       {/*<button className="counter-action increment" onClick={this.incrementScore}>*/}
         +
       </button>
@@ -78,7 +78,8 @@ function Counter(props) {
 }
 
 Counter.propTypes = {
-  score: React.PropTypes.number.isRequired
+  score: React.PropTypes.number.isRequired,
+  onChange: React.PropTypes.func.isRequired,
 };
 
 function Player(props) {
@@ -88,7 +89,7 @@ function Player(props) {
         {props.name}
       </div>
       {/*<Counter initialScore={props.score}/>*/}
-      <Counter score={props.score}/>
+      <Counter score={props.score} onChange={props.onScoreChange}/>
     </div>
   );
 }
@@ -96,6 +97,7 @@ function Player(props) {
 Player.propTypes = {
   name: React.PropTypes.string.isRequired,
   score: React.PropTypes.number.isRequired,
+  onScoreChange: React.PropTypes.func.isRequired,
 };
 
 var Application = React.createClass({
@@ -121,15 +123,27 @@ var Application = React.createClass({
     };
   },
 
+  onScoreChange: function(index, delta) {
+    // console.log('onScoreChange', index, delta);
+    this.state.players[index].score += delta;
+    this.setState(this.state);
+  },
+
   render: function() {
     return (
       <div className="scoreboard">
         <Header title={this.props.title}/>
 
         <div className="players">
-          {this.state.players.map(function(player) {
-            return <Player name={player.name} score={player.score} key={player.id}/>
-          })}
+          {this.state.players.map(function(player, index) {
+            return (
+              <Player
+                onScoreChange={function(delta) {this.onScoreChange(index, delta)}.bind(this)}
+                name={player.name}
+                score={player.score}
+                key={player.id}/>
+            );
+          }.bind(this))}
         </div>
       </div>
     );
