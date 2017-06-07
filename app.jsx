@@ -1,3 +1,18 @@
+var PLAYERS = [
+  {
+    name: "Jim Hoskins",
+    score: 31,
+  },
+  {
+    name: "Andrew Chalkley",
+    score: 33,
+  },
+  {
+    name: "Alena Holligan",
+    score: 42,
+  },
+];
+
 function Header(props) {
   return (
     <div className="header">
@@ -46,8 +61,9 @@ function Application(props) {
       <Header title={props.title}/>
 
       <div className="players">
-        <Player name="Jim Hoskins" score={31} />
-        <Player name="Andrew Chalkley" score={33} />
+        {props.players.map(function(player) {
+          return <Player name={player.name} score={player.score} />
+        })}
       </div>
     </div>
   );
@@ -55,10 +71,15 @@ function Application(props) {
 
 Application.propTypes = {
   title: React.PropTypes.string.isRequired,
+  // players: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  players: React.PropTypes.arrayOf(React.PropTypes.shape({
+    name: React.PropTypes.string.isRequired,
+    score: React.PropTypes.number.isRequired,
+  })).isRequired,
 };
 
 Application.defaultProps = {
   title: "Scoreboard",
 };
 
-ReactDOM.render(<Application title={"NOT DEFAULT TITLE"}/>, document.getElementById('container'));
+ReactDOM.render(<Application players={PLAYERS}/>, document.getElementById('container'));
