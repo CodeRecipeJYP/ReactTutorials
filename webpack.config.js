@@ -1,6 +1,7 @@
 
 module.exports = {
-  entry: './app.js',
+  devtool: 'inline-sourcemap',
+  entry: './index.js',
 
   output: {
     // path: 'build',
