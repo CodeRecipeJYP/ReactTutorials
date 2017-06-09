@@ -4,7 +4,7 @@
 import React from "react";
 import { render } from 'react-dom';
 
-import Scoreboard from './src/components/Scoreboard';
+import Scoreboard from './src/containers/Scoreboard';
 import './css/style.css';
 
 
