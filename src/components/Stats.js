@@ -24,7 +24,7 @@ const Stats = props => {
       </tbody>
     </table>
   )
-}
+};
 
 Stats.propTypes = {
   players: PropTypes.array.isRequired,

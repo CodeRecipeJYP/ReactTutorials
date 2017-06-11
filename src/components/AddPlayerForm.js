@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 export default class AddPlayerForm extends Component {
-  static propTypes: {
-    onAdd: PropTypes.func.isRequired,
+
+  static propTypes = {
+    addPlayer: PropTypes.func.isRequired,
   };
 
   state = {
@@ -27,7 +28,7 @@ export default class AddPlayerForm extends Component {
   render() {
     return (
       <div className="add-player-form">
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.addPlayer}>
           <input
             type="text"
             value={this.state.name}
