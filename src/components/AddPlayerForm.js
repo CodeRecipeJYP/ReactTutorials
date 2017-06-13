@@ -19,9 +19,9 @@ export default class AddPlayerForm extends Component {
     this.setState({ name: name });
   };
 
-  onSubmit = (e) => {
+  addPlayer = (e) => {
     if (e) e.preventDefault();
-    this.props.onAdd(this.state.name);
+    this.props.addPlayer(this.state.name);
     this.setState({ name: '' });
   };
 
