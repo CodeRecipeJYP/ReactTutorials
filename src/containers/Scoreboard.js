@@ -9,6 +9,7 @@ import * as PlayerActionCreators from '../actions/player';
 import Player from '../components/Player';
 import Header from '../components/Header';
 import AddPlayerForm from '../components/AddPlayerForm';
+import PlayerDetail from "../components/PlayerDetail";
 
 
 
@@ -43,6 +44,11 @@ class Scoreboard extends Component {
           { playerComponents }
         </div>
         <AddPlayerForm addPlayer={addPlayer} />
+        <PlayerDetail
+          name={1}
+          index={-1}
+          score={1}
+        />
       </div>
     );
   }

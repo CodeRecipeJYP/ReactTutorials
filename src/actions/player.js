@@ -24,3 +24,11 @@ export const updatePlayerScore = (index, score) => {
     score
   };
 };
+
+export const showPlayerDetail = (index) => {
+  return {
+    type: PlayerActionTypes.SHOW_PLAYER_DETAIL,
+    index,
+  };
+};
+
